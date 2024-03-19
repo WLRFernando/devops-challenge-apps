@@ -14,14 +14,21 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         TF_ACTION_WORKING_DIR: 'terraform'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY:  ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY:  ${{ secrets.SECRET_KEY }}
         TF_VAR_db_username: ${{ secrets.TF_VAR_DB_USERNAME}}
         TF_VAR_db_password: ${{ secrets.TF_VAR_DB_PASSWORD}}
     steps:
 
     - name: Checkout Repo
       uses: actions/checkout@v2
+
+    - name: Configure AWS Credentials 2
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-region: us-west-2
+        aws-access-key-id: ${{ secrets.ACCESS_KEY }}
+        aws-secret-access-key: ${{ secrets.SECRET_KEY }}
 
     - name: Terraform Init
       working-directory: ./terraform
