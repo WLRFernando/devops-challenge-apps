@@ -8,6 +8,11 @@ output "vpc_arn" {
   value       = aws_vpc.main.arn
 }
 
+output "vpc_cidr_block" {
+  description = "The ARN of the VPC"
+  value       = aws_vpc.main.cidr_block
+}
+
 output "private_subnets" {
   description = "List of IDs of private subnets"
   value       = aws_subnet.private_subnets
