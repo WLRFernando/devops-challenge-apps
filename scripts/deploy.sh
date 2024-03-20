@@ -22,13 +22,14 @@ cd devops-challenge-apps
 
 if [[ "$app_name" == "api" ]]; then
     cd api
+    ## add DB_USER DB_PASSWORD DB_DATABASE DB_HOST to environment
     npm i
-    PORT=5000 pm2 start npm --name "api" -- start
+    PORT=5000  pm2 start npm --name "api" -- start
 fi
 
 if [[ "$app_name" == "web" ]]; then
     cd web
     npm i
-    PORT=3000 pm2 start npm --name "web" -- start
+    PORT=3000 API_HOST="https://api.example.com"  pm2 start npm --name "web" -- start
 fi
 
