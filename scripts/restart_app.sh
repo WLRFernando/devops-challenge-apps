@@ -19,5 +19,5 @@ if [[ "$app_name" == "api" ]]; then
 fi
 
 if [[ "$app_name" == "web" ]]; then
-    PORT=5000 pm2 restart web
+    PORT=3000 API_HOST="https://api.example.com" pm2 restart web
 fi
